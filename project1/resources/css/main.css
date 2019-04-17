@@ -133,6 +133,85 @@ nav a:hover {
   transition: opacity 250ms ease-in-out 250ms;
 }
 
+/*Hero Styles*/
+.hero::before {
+  background-image: url(https://images.pexels.com/photos/2120101/pexels-photo-2120101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-size: cover;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.4;
+}
+
+.hero {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hero-inner {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.hero-text-block {
+  padding: 4em 2em 0em 2em;
+}
+
+.hero-intro {
+  margin-left: -10px;
+  font-family: 'Montserrat', sans-serif;
+  color: #862121;
+  text-transform: uppercase;
+  letter-spacing: .25rem;
+  font-size: 1rem;
+}
+
+.hero-inner h3::before {
+  display: inline-block;
+  margin-right: .5em;
+  height: 3px;
+  vertical-align: 25%;
+  content: " ";
+  text-shadow: none;
+  background-color: #862121;
+  width: 2.5em;
+}
+
+.hero-banner {
+  font-family: 'Libre Baskerville', serif;
+  color: #FFFFFF;
+  font-size: 2.6em;
+  line-height: 1.2em;
+  margin-top: 0;
+  letter-spacing: -.05rem;
+}
+
+.hero-banner-break {
+  display: none;
+}
+
+.hero-inner .btn {
+  flex: 1 1 auto;
+  align-self: center;
+  text-align: center;
+  padding: 1em;
+  margin: 0em 5em;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+}
+
+/*TODO: Add smaller breakpoints and minor break point for banner font*/
 @media screen and (min-width: 800px) {
   .nav-toggle-label {
     display: none;
@@ -191,6 +270,27 @@ nav a:hover {
 
   nav a:hover::before {
     transform: scale(1, 1)
+  }
+
+  /* Hero Banner Break */
+  .hero-banner {
+    font-size: 4em;
+    margin-bottom: 0;
+  }
+  .hero-banner-break {
+    display: block !important;
+  }
+
+  .hero-inner {
+    width: 100%;
+    justify-content: space-around;
+    margin: 5em;
+  }
+
+  .hero-inner .btn {
+    flex-grow: 0;
+    align-self: flex-end;
+    margin-top: 1em;
   }
 }
 
