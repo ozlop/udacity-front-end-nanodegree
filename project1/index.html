@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="resources/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
 </head>
 <body>
 
@@ -15,10 +15,10 @@
   <input type="checkbox" id="nav-toggle" class="nav-toggle">
   <nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
   <label for="nav-toggle" class="nav-toggle-label">
@@ -26,7 +26,7 @@
   </label>
 </header>
 
-<section class="home">
+<section id="home" class="home-section">
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-text-block">
@@ -43,6 +43,21 @@
       </div>
       <a href="#about" class="btn">More About Me</a>
     </div>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="about-main">
+    <div class="about-header">
+      <h2 class="about-title">About</h2>
+      <h1 class="about-banner">More About Me</h1>
+      <h3 class="about-blurb">My name is Oswaldo (Ozzy) Lopez and I am a full-time father and full-time learner; tech-wizard in the making.</h3>
+    </div>
+    <div class="about-description">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem beatae dolore ea eaque error eum exercitationem, fugiat ipsum iste iure iusto laudantium magnam maiores modi necessitatibus repellendus repudiandae.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deserunt dicta exercitationem hic impedit, magni, mollitia necessitatibus odit porro quam similique sit vel velit? Consequatur dolorum laboriosam minus quae ullam?</p>
+    </div>
+
   </div>
 </section>
 </body>
