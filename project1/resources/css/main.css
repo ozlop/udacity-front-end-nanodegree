@@ -214,19 +214,19 @@ nav a:hover {
 }
 
 /* About Styles */
-.about-main {
+.section-main {
   /*margin-top: -1.2em;*/
   padding-top: 1.2em;
   background: var(--light-background);
 }
 
-.about-header {
+.section-header {
   margin: 4em 0;
   padding: 1em;
   text-align: center;
 }
 
-.about-header:after {
+.section-header:after {
   display: inline-block;
   height: 1px;
   content: " ";
@@ -235,7 +235,7 @@ nav a:hover {
   margin-top: 4em;
 }
 
-.about-title {
+.section-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1.4em;
@@ -244,14 +244,14 @@ nav a:hover {
   margin-bottom: 0;
 }
 
-.about-banner {
+.section-banner {
   font-family: 'Libre Baskerville', serif;
   font-size: 1.9em;
   text-align: center;
   margin-top: 0;
 }
 
-.about-blurb {
+.section-blurb {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1em;
@@ -260,13 +260,17 @@ nav a:hover {
   margin: .5em;
 }
 
-.about-description {
+.section-description {
   font-family: 'Libre Baskerville', serif;
   color: #5f5f5f;
   font-size: .95em;
   line-height: 1.75em;
   margin: 0 2em 0;
   padding-bottom: 2em;
+}
+
+#projects projects-section {
+  background: var(--dark-background);
 }
 
 /*TODO: Add smaller breakpoints and minor break point for banner font*/
@@ -352,11 +356,11 @@ nav a:hover {
     margin-top: 1em;
   }
 
-  .about-main {
+  .section-main {
     padding: 5em 0;
   }
 
-  .about-header {
+  .section-header {
     padding: 1em;
     text-align: center;
     width: 800px;
@@ -364,22 +368,22 @@ nav a:hover {
     margin-right: auto;
   }
 
-  .about-title {
+  .section-title {
     font-size: 2em;
     margin-bottom: 0;
   }
 
-  .about-banner {
+  .section-banner {
     font-size: 2.3em;
   }
 
-  .about-blurb {
+  .section-blurb {
     font-size: 1.25em;
     line-height: 1.75em;
     margin: 3em 0 0 0;
   }
 
-  .about-description {
+  .section-description {
     font-size: 1.1em;
     line-height: 1.75em;
     width: 700px;
@@ -388,7 +392,7 @@ nav a:hover {
     padding-bottom: 2em;
   }
 
-  .about-header:after {
+  .section-header:after {
     width: 25em;
   }
 }
