@@ -347,6 +347,24 @@ nav a:hover {
   padding-top: 4em;
 }
 
+#contact .btn {
+  flex: 1 1 auto;
+  align-self: center;
+  text-align: center;
+  padding: 1em;
+  margin: 0em 5em;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #000000;
+  border: 2px solid #000000;
+}
+
+#contact .section-content {
+  margin: 0 auto 20em;
+  text-align: center;
+}
+
 /*TODO: Add smaller breakpoints and minor break point for banner font*/
 /*TODO: navbar justify content space-around for medium screen*/
 @media screen and (min-width: 800px) {
