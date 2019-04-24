@@ -49,7 +49,7 @@ header {
 }
 
 .nav-toggle:focus ~ .nav-toggle-label {
-  outline: 3px solid white;
+  outline: 3px solid #ffffff;
 }
 
 .nav-toggle-label {
@@ -66,7 +66,7 @@ header {
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
   display: block;
-  background: white;
+  background: #ffffff;
   height: 2px;
   width: 2em;
   border-radius: 2px;
@@ -114,7 +114,7 @@ nav li {
 nav a {
   position: relative;
   padding: .5em 1em .5em 1em;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   font-size: 1rem;
   text-transform: uppercase;
@@ -123,7 +123,7 @@ nav a {
 }
 
 nav a:hover {
-  color: white;
+  color: #ffffff;
 }
 
 .nav-toggle:checked ~ nav {
@@ -189,7 +189,7 @@ nav a:hover {
 
 .hero-banner {
   font-family: 'Libre Baskerville', serif;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 2.6em;
   line-height: 1.2em;
   margin-top: 0;
@@ -209,13 +209,12 @@ nav a:hover {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   text-decoration: none;
-  color: #FFFFFF;
-  border: 2px solid #FFFFFF;
+  color: #ffffff;
+  border: 2px solid #ffffff;
 }
 
 /* About Styles */
 .section-main {
-  /*margin-top: -1.2em;*/
   padding-top: 1.2em;
   background: var(--light-background);
 }
@@ -269,8 +268,83 @@ nav a:hover {
   padding-bottom: 2em;
 }
 
-#projects projects-section {
+#projects .section-main {
   background: var(--dark-background);
+}
+
+#projects .section-banner {
+  color: #ffffff;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 2em;
+}
+
+.content-container > * {
+  margin: 1.5em;
+}
+
+#projects .section-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#projects .section-header:after {
+  display: none;
+}
+
+.card {
+  background-color: #ffffff;
+  width: 240px;
+  height: 300px;
+}
+
+.card-image-container {
+  width: 240px;
+  height: 240px;
+}
+
+.card-header {
+  text-align: center;
+}
+
+.card-header a {
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #000000;
+}
+
+.card-image {
+  display: block;
+  margin: auto;
+}
+
+.soon {
+  position: relative;
+  text-align: center;
+}
+
+.soon h2 {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  left: 0px;
+}
+.soon img {
+  opacity: .5;
+}
+
+#image-1 {
+  display: block;
+  padding-top: 4em;
 }
 
 /*TODO: Add smaller breakpoints and minor break point for banner font*/
@@ -322,7 +396,7 @@ nav a:hover {
     content: '';
     display: block;
     height: 5px;
-    background: white;
+    background: #ffffff;
     position: absolute;
     top: -.75em;
     left: 0;
@@ -397,4 +471,12 @@ nav a:hover {
   }
 }
 
+@media screen and (min-width: 1100px) {
 
+  #card-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0 10em;
+    justify-items: center;
+  }
+}
