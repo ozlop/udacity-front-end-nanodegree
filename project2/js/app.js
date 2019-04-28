@@ -1,7 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const cardList = [
+    {"imageClass": "fa fa-diamond"},
+    {"imageClass": "fa fa-paper-plane-o"},
+    {"imageClass": "fa fa-anchor"},
+    {"imageClass": "fa fa-bolt"},
+    {"imageClass": "fa fa-cube"},
+    {"imageClass": "fa fa-leaf"},
+    {"imageClass": "fa fa-bicycle"},
+    {"imageClass": "fa fa-bomb"}
+];
 
 /*
  * Display the cards on the page
@@ -25,6 +34,31 @@ function shuffle(array) {
     return array;
 }
 
+(function createDeck() {
+    const fullDeckList = shuffle(cardList.concat(cardList));
+    const deckElement = document.querySelector('.deck');
+    const deckFragment = document.createDocumentFragment();
+
+    function createCardElement(card) {
+        const cardElement = document.createElement('li');
+        const imageElement = document.createElement('i');
+
+        cardElement.setAttribute('class', 'card');
+        imageElement.setAttribute('class', card['imageClass']);
+
+        cardElement.appendChild(imageElement);
+
+        return cardElement
+    }
+
+    for (let card of fullDeckList) {
+        const cardElement = createCardElement(card);
+
+        deckFragment.appendChild(cardElement)
+    }
+
+    deckElement.appendChild(deckFragment);
+})();
 
 /*
  * set up the event listener for a card. If a card is clicked:
