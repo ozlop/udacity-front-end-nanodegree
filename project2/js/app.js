@@ -11,6 +11,8 @@ const cardList = [
     {"imageClass": "fa fa-bicycle"},
     {"imageClass": "fa fa-bomb"}
 ];
+const deckElement = document.querySelector('.deck');
+let openCards = [];
 
 /*
  * Display the cards on the page
@@ -36,7 +38,6 @@ function shuffle(array) {
 
 (function createDeck() {
     const fullDeckList = shuffle(cardList.concat(cardList));
-    const deckElement = document.querySelector('.deck');
     const deckFragment = document.createDocumentFragment();
 
     function createCardElement(card) {
@@ -58,7 +59,7 @@ function shuffle(array) {
     }
 
     deckElement.appendChild(deckFragment);
-})();
+})(deckElement);
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -70,3 +71,71 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+function displayCardSymbol(card) {
+    card.setAttribute('class', 'card open show');
+}
+
+function trackOpenCard(card) {
+    openCards.push(card);
+}
+
+function resetCards() {
+    for (let card of openCards) {
+        card.setAttribute('class', 'card');
+    }
+}
+
+function setMatch() {
+    for (let card of openCards) {
+        card.setAttribute('class', 'card match');
+    }
+}
+
+function addMove() {
+    const moveElement = document.querySelector('.moves');
+    let moveCount = Number(moveElement.textContent);
+
+    moveElement.textContent = (moveCount + 1);
+}
+
+function checkMatch() {
+    let firstCardSymbol = openCards[0].firstElementChild.getAttribute('class');
+    let secondCardSymbol = openCards[1].firstElementChild.getAttribute('class');
+
+    if (firstCardSymbol === secondCardSymbol) {
+        setMatch();
+    } else {
+        resetCards();
+    }
+
+    openCards = [];
+}
+
+// event creator
+function clickEvent(node, type, callback) {
+    // create event
+    node.addEventListener(type, function(e) {
+        // remove event
+        node.removeEventListener(e.type, arguments.callee);
+
+        // call handler
+        return callback(e);
+    })
+}
+
+function flipCard() {
+    const card = event.target;
+
+    if (card.getAttribute('class') === 'card') {
+        displayCardSymbol(card);
+        trackOpenCard(card);
+
+        if (openCards.length === 2) {
+            setTimeout(checkMatch, 800);
+        }
+    }
+    addMove();
+    setTimeout( () => {clickEvent(deckElement, 'click', flipCard);}, 800);
+}
+
