@@ -125,7 +125,9 @@ function clickEvent(node, type, callback) {
 }
 
 function endGame(){
-    alert('won');
+    let modal = document.querySelector('.modal');
+
+    modal.setAttribute('class', 'modal display-endgame');
 }
 
 function checkGameStatus() {
