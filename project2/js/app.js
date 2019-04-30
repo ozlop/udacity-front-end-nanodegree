@@ -124,6 +124,18 @@ function clickEvent(node, type, callback) {
     })
 }
 
+function endGame(){
+    alert('won');
+}
+
+function checkGameStatus() {
+    const matchedCards = document.getElementsByClassName('card match');
+
+    if (matchedCards.length === 16) {
+        endGame();
+    }
+}
+
 function flipCard() {
     const card = event.target;
 
@@ -137,5 +149,12 @@ function flipCard() {
     }
     addMove();
     setTimeout( () => {clickEvent(deckElement, 'click', flipCard);}, 800);
+    setTimeout( () => {clickEvent(deckElement, 'click', checkGameStatus());}, 800);
 }
+
+(function runGame(){
+    // Initial click event handler
+    clickEvent(deckElement, 'click', flipCard);
+    clickEvent(deckElement, 'click', checkGameStatus);
+})();
 
