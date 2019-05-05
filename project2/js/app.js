@@ -118,6 +118,49 @@ function addMove() {
     let moveCount = Number(moveElement.textContent);
 
     moveElement.textContent = (moveCount + 1);
+
+function changeStar(star, flag) {
+    const stars = document.getElementsByClassName('star');
+    const starElement = stars[star];
+
+    const elementClass = (
+        flag === 'half' ? 'fa fa-star-half-o' :
+        flag === 'empty' ? 'fa fa-star-o': 'fa fa-star'
+    );
+
+    starElement.childNodes[0].setAttribute('class', elementClass);
+}
+
+function trackStars(moves) {
+    switch (moves) {
+        case 9:
+            changeStar(2, 'half')
+            changeStar(5, 'half')
+            break;
+        case 12:
+            changeStar(2, 'empty')
+            changeStar(5, 'empty')
+            break;
+        case 15:
+            changeStar(1, 'half')
+            changeStar(4, 'half')
+            break;
+        case 17:
+            changeStar(1, 'empty')
+            changeStar(4, 'empty')
+            break;
+        case 19:
+            changeStar(0, 'half')
+            changeStar(3, 'half')
+            break;
+        case 22:
+            changeStar(0, 'empty')
+            changeStar(3, 'empty')
+            break;
+        default:
+            break;
+    }
+
 }
 
 function checkMatch() {
