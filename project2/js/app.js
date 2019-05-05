@@ -114,10 +114,17 @@ function setMatch() {
 
 function addMove() {
     const moveElement = document.querySelector('.moves');
-    //TODO: Add modal move counter
+    const modalMoveElement = document.querySelector('.modal-moves');
+
     let moveCount = Number(moveElement.textContent);
 
-    moveElement.textContent = (moveCount + 1);
+    moveCount += 1;
+
+    moveElement.textContent = (moveCount.toString());
+    modalMoveElement.textContent = (moveCount.toString());
+
+    return moveCount
+}
 
 function changeStar(star, flag) {
     const stars = document.getElementsByClassName('star');
@@ -134,28 +141,28 @@ function changeStar(star, flag) {
 function trackStars(moves) {
     switch (moves) {
         case 9:
-            changeStar(2, 'half')
-            changeStar(5, 'half')
+            changeStar(2, 'half');
+            changeStar(5, 'half');
             break;
         case 12:
-            changeStar(2, 'empty')
-            changeStar(5, 'empty')
+            changeStar(2, 'empty');
+            changeStar(5, 'empty');
             break;
         case 15:
-            changeStar(1, 'half')
-            changeStar(4, 'half')
+            changeStar(1, 'half');
+            changeStar(4, 'half');
             break;
         case 17:
-            changeStar(1, 'empty')
-            changeStar(4, 'empty')
+            changeStar(1, 'empty');
+            changeStar(4, 'empty');
             break;
         case 19:
-            changeStar(0, 'half')
-            changeStar(3, 'half')
+            changeStar(0, 'half');
+            changeStar(3, 'half');
             break;
         case 22:
-            changeStar(0, 'empty')
-            changeStar(3, 'empty')
+            changeStar(0, 'empty');
+            changeStar(3, 'empty');
             break;
         default:
             break;
@@ -191,14 +198,15 @@ function clickEvent(node, type, callback) {
 function endGame(){
     let modal = document.querySelector('.modal');
     let modalTimerElement = document.querySelector('.total-time');
-    let timerElement = document.querySelector('.timer-time')
+    let timerElement = document.querySelector('.timer-time');
 
     modal.setAttribute('class', 'modal display-endgame');
     modalTimerElement.innerHTML = timerElement.innerHTML;
 }
 
-function checkGameStatus() {
+function checkGameStatus(moves) {
     const matchedCards = document.getElementsByClassName('card match');
+    trackStars(moves);
 
     if (matchedCards.length === 16) {
         endGame();
@@ -214,17 +222,17 @@ function flipCard() {
 
         if (openCards.length === 2) {
             setTimeout(checkMatch, 800);
+            let moves = addMove();
+            checkGameStatus(moves);
         }
     }
-    addMove();
+
+
     setTimeout( () => {clickEvent(deckElement, 'click', flipCard);}, 800);
-    setTimeout( () => {clickEvent(deckElement, 'click', checkGameStatus());}, 800);
 }
 
 (function runGame(){
     // Initial click event handler
     clickEvent(deckElement, 'click', flipCard);
-    clickEvent(deckElement, 'click', checkGameStatus);
     clickEvent(deckElement, 'click', startTime);
 })();
-
