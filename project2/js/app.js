@@ -86,6 +86,26 @@ function resetCards() {
     }
 }
 
+function startTime(){
+    let gameTime = 0;
+    let timerElement = document.querySelector('.timer-time');
+
+    function updateTime() {
+        let timer = new Date(null);
+        gameTime += 1;
+
+        timer.setSeconds(gameTime);
+
+        let MHSTime = timer.toISOString().substr(11, 8);
+
+        timerElement.innerHTML = MHSTime;
+
+        setTimeout(updateTime, 1000);
+    }
+
+    updateTime();
+}
+
 function setMatch() {
     for (let card of openCards) {
         card.setAttribute('class', 'card match');
@@ -94,6 +114,7 @@ function setMatch() {
 
 function addMove() {
     const moveElement = document.querySelector('.moves');
+    //TODO: Add modal move counter
     let moveCount = Number(moveElement.textContent);
 
     moveElement.textContent = (moveCount + 1);
@@ -126,8 +147,11 @@ function clickEvent(node, type, callback) {
 
 function endGame(){
     let modal = document.querySelector('.modal');
+    let modalTimerElement = document.querySelector('.total-time');
+    let timerElement = document.querySelector('.timer-time')
 
     modal.setAttribute('class', 'modal display-endgame');
+    modalTimerElement.innerHTML = timerElement.innerHTML;
 }
 
 function checkGameStatus() {
@@ -158,5 +182,6 @@ function flipCard() {
     // Initial click event handler
     clickEvent(deckElement, 'click', flipCard);
     clickEvent(deckElement, 'click', checkGameStatus);
+    clickEvent(deckElement, 'click', startTime);
 })();
 
