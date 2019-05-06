@@ -215,6 +215,7 @@ function checkGameStatus(moves) {
 
 function flipCard() {
     const card = event.target;
+    let moves;
 
     if (card.getAttribute('class') === 'card') {
         displayCardSymbol(card);
@@ -222,17 +223,26 @@ function flipCard() {
 
         if (openCards.length === 2) {
             setTimeout(checkMatch, 800);
-            let moves = addMove();
-            checkGameStatus(moves);
+            moves = addMove();
         }
     }
+    checkGameStatus(moves);
 
 
     setTimeout( () => {clickEvent(deckElement, 'click', flipCard);}, 800);
 }
 
+function setRestart() {
+    const restartElements = document.getElementsByClassName('restart');
+
+    for (let element of restartElements) {
+        element.addEventListener('click', () => {location.reload()});
+    }
+}
+
 (function runGame(){
     // Initial click event handler
+    setRestart();
     clickEvent(deckElement, 'click', flipCard);
     clickEvent(deckElement, 'click', startTime);
 })();
