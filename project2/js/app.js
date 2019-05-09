@@ -163,14 +163,6 @@ function trackStars(moves) {
             changeStar(1, 'empty');
             changeStar(4, 'empty');
             break;
-        case 19:
-            changeStar(0, 'half');
-            changeStar(3, 'half');
-            break;
-        case 22:
-            changeStar(0, 'empty');
-            changeStar(3, 'empty');
-            break;
         default:
             break;
     }
