@@ -104,7 +104,14 @@ function startTime(){
     }
 
     updateTime();
-}
+
+};
+
+// function stopTimer() {
+//     let timerElement = document.querySelector('.timer-time');
+//
+//     timerElement.innerHTML =
+// }
 
 function setMatch() {
     for (let card of openCards) {
@@ -202,11 +209,11 @@ function endGame(){
 
     modal.setAttribute('class', 'modal display-endgame');
     modalTimerElement.innerHTML = timerElement.innerHTML;
+    timerElement.parentNode.removeChild(timerElement);
 }
 
-function checkGameStatus(moves) {
+function checkGameStatus() {
     const matchedCards = document.getElementsByClassName('card match');
-    trackStars(moves);
 
     if (matchedCards.length === 16) {
         endGame();
@@ -226,8 +233,7 @@ function flipCard() {
             moves = addMove();
         }
     }
-    checkGameStatus(moves);
-
+    trackStars(moves);
 
     setTimeout( () => {clickEvent(deckElement, 'click', flipCard);}, 800);
 }
@@ -245,4 +251,9 @@ function setRestart() {
     setRestart();
     clickEvent(deckElement, 'click', flipCard);
     clickEvent(deckElement, 'click', startTime);
+    deckElement.addEventListener('click', () => {
+        setTimeout( () => {
+            checkGameStatus()
+        }, 1000)
+    })
 })();
