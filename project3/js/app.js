@@ -1,19 +1,50 @@
 // Enemies our player must avoid
-var Enemy = function() {
+const Enemy = function(y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+
+    this.speed = Math.floor(Math.random() * 3) + .5;
+
+    this.x = -100;
+    this.y = y;
+
+    // Enemy boundary variables
+    this.xBoundaryMin = -100;
+    this.xBoundaryMax = 500;
+
+
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    const move = 200 * dt * this.speed;
+
+    if (this.x < this.xBoundaryMax) {
+        this.x += move;
+    } else {
+        this.x = this.xBoundaryMin;
+        this.updateSpeed();
+        this.updateLane();
+    }
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+};
+
+Enemy.prototype.updateSpeed = function() {
+    this.speed = Math.floor(Math.random() * 3) +1;
+};
+
+Enemy.prototype.updateLane = function() {
+    const lanes = [50, 135, 220]
+
+    this.y = lanes[Math.floor(Math.random() * lanes.length)];
 };
 
 // Draw the enemy on the screen, required method for game
@@ -47,7 +78,6 @@ const Player = function() {
 Player.prototype.update = function(x=0, y=0) {
     this.x += x;
     this.y += y;
-    console.log(this.x, this.y)
 };
 
 Player.prototype.render = function() {
@@ -92,7 +122,10 @@ Player.prototype.handleInput = function(event) {
 // Place the player object in a variable called player
 
 const player = new Player();
-const allEnemies = [];
+const enemy1 = new Enemy(50);
+const enemy2 = new Enemy(135);
+const enemy3 = new Enemy(220);
+const allEnemies = [enemy1, enemy2, enemy3];
 
 
 // This listens for key presses and sends the keys to your
