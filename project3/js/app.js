@@ -1,7 +1,3 @@
-const playerStartx = 200;
-const playerStarty = 375;
-
-
 // Enemies our player must avoid
 const Enemy = function(y) {
     // Variables applied to each of our instances go here,
@@ -16,6 +12,10 @@ const Enemy = function(y) {
 
     this.x = -100;
     this.y = y;
+
+    //Enemy attributes
+    this.width = 95;
+    this.height = 15;
 
     // Enemy boundary variables
     this.xBoundaryMin = -100;
@@ -36,9 +36,8 @@ Enemy.prototype.update = function(dt) {
         this.updateSpeed();
         this.updateLane();
     }
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
+
+    this.checkCollision(player);
 };
 
 Enemy.prototype.updateSpeed = function() {
@@ -56,6 +55,15 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Enemy.prototype.checkCollision = function(player) {
+    if (this.x < player.x + player.width &&
+        this.x + this.width > player.x &&
+        this.y - this.height === player.y) {
+
+        player.lose()
+    }
+};
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -68,8 +76,13 @@ const Player = function() {
     this.sprite = 'images/char-boy.png';
 
     // Starting player position
-    this.x = playerStartx;
-    this.y = playerStarty;
+    this.playerStartx = 200;
+    this.playerStarty = 375;
+    this.x = this.playerStartx;
+    this.y = this.playerStarty;
+
+    //Player attributes
+    this.width = 65;
 
     // Player boundary variables
     this.xBoundaryMin = 0;
@@ -89,8 +102,8 @@ Player.prototype.update = function(x=0, y=0) {
 };
 
 Player.prototype.reset = function() {
-    this.x = playerStartx;
-    this.y = playerStarty;
+    this.x = this.playerStartx;
+    this.y = this.playerStarty;
 };
 
 Player.prototype.score = function() {
@@ -102,6 +115,11 @@ Player.prototype.checkScore = function () {
     if (this.y === -50) {
         this.score();
     }
+};
+
+Player.prototype.lose = function () {
+    this.gameScore = 0;
+    this.reset()
 };
 
 Player.prototype.render = function() {
