@@ -45,7 +45,7 @@ Enemy.prototype.updateSpeed = function() {
 };
 
 Enemy.prototype.updateLane = function() {
-    const lanes = [50, 135, 220]
+    const lanes = [50, 135, 220];
 
     this.y = lanes[Math.floor(Math.random() * lanes.length)];
 };
@@ -109,6 +109,7 @@ Player.prototype.reset = function() {
 Player.prototype.score = function() {
     this.gameScore += 1;
     this.reset();
+    this.updateScore();
 };
 
 Player.prototype.checkScore = function () {
@@ -120,7 +121,16 @@ Player.prototype.checkScore = function () {
 Player.prototype.lose = function () {
     this.gameScore = 0;
     this.reset()
+    this.updateScore()
 };
+
+// Page score results
+Player.prototype.updateScore = function(){
+    const scoreDiv = document.querySelector('.game-stats__score');
+    const scoreValue = player.gameScore;
+    scoreDiv.innerHTML = `Score: ${scoreValue}`;
+};
+
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -169,7 +179,6 @@ const enemy2 = new Enemy(135);
 const enemy3 = new Enemy(220);
 const allEnemies = [enemy1, enemy2, enemy3];
 
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -182,3 +191,5 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+

@@ -1,3 +1,20 @@
-body {
-    text-align: center;
+html {
+  height: 100vh;
+  text-align: center;
+  background-color: #408c99;
+}
+
+canvas {
+  margin-top: -35px;
+  margin-bottom: -35px;
+}
+
+.game {
+  flex-flow: row;
+}
+.game-stats__score {
+  font-family: 'Press Start 2P', cursive;
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
 }
