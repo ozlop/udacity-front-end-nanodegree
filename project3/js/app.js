@@ -1,3 +1,7 @@
+const playerStartx = 200;
+const playerStarty = 375;
+
+
 // Enemies our player must avoid
 const Enemy = function(y) {
     // Variables applied to each of our instances go here,
@@ -64,8 +68,8 @@ const Player = function() {
     this.sprite = 'images/char-boy.png';
 
     // Starting player position
-    this.x = 200;
-    this.y = 375;
+    this.x = playerStartx;
+    this.y = playerStarty;
 
     // Player boundary variables
     this.xBoundaryMin = 0;
@@ -73,11 +77,31 @@ const Player = function() {
     this.yBoundaryMin = -50;
     this.yBoundaryMax = 375;
 
+    // Player score
+    this.gameScore = 0;
 };
 
 Player.prototype.update = function(x=0, y=0) {
     this.x += x;
     this.y += y;
+
+    this.checkScore()
+};
+
+Player.prototype.reset = function() {
+    this.x = playerStartx;
+    this.y = playerStarty;
+};
+
+Player.prototype.score = function() {
+    this.gameScore += 1;
+    this.reset();
+};
+
+Player.prototype.checkScore = function () {
+    if (this.y === -50) {
+        this.score();
+    }
 };
 
 Player.prototype.render = function() {
