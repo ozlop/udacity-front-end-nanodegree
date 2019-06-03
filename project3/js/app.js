@@ -126,9 +126,10 @@ Player.prototype.lose = function () {
 
 // Page score results
 Player.prototype.updateScore = function(){
-    const scoreDiv = document.querySelector('.game-stats__score');
+    const scoreDiv = document.querySelector('.game-grid__score');
     const scoreValue = player.gameScore;
     scoreDiv.innerHTML = `Score: ${scoreValue}`;
+    console.log('alkjasd')
 };
 
 

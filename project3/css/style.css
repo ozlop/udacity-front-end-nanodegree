@@ -9,12 +9,28 @@ canvas {
   margin-bottom: -35px;
 }
 
-.game {
-  flex-flow: row;
+.game-grid {
+  display: flex;
+  justify-content: space-around;
 }
-.game-stats__score {
+
+.game-grid__score {
   font-family: 'Press Start 2P', cursive;
-  margin: 0;
-  padding: 0;
   color: #ffffff;
+
+}
+
+.game-grid__game-canvas {
+}
+
+.game-grid__leaderboard-section {
+  font-family: 'Press Start 2P', cursive;
+  color: #ffffff;
+
+}
+.game-grid__leaderboard-coming-soon {
+  font-family: 'Press Start 2P', cursive;
+  color: #ffffff;
+
+  flex
 }
