@@ -8,8 +8,10 @@ const Enemy = function(y) {
     this.sprite = 'images/enemy-bug.png';
 
 
+    // Randomize enemy speed
     this.speed = Math.floor(Math.random() * 3) + .5;
 
+    // Set enemy start position
     this.x = -100;
     this.y = y;
 
@@ -40,10 +42,12 @@ Enemy.prototype.update = function(dt) {
     this.checkCollision(player);
 };
 
+// Method to change enemy speed, used on respawn
 Enemy.prototype.updateSpeed = function() {
     this.speed = Math.floor(Math.random() * 3) +1;
 };
 
+// Method to change enemy lane, used on respawn
 Enemy.prototype.updateLane = function() {
     const lanes = [50, 135, 220];
 
@@ -55,6 +59,7 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Enemy collision check with player. Player dies if collision occurs
 Enemy.prototype.checkCollision = function(player) {
     if (this.x < player.x + player.width &&
         this.x + this.width > player.x &&
@@ -97,6 +102,10 @@ const Player = function() {
     this.lives = 5;
 };
 
+/*
+update method continuously running in game engine. Used to update player
+position and run player object checkScore method
+*/
 Player.prototype.update = function(x=0, y=0) {
     this.x += x;
     this.y += y;
@@ -104,23 +113,27 @@ Player.prototype.update = function(x=0, y=0) {
     this.checkScore()
 };
 
+//Method used to reset player position
 Player.prototype.reset = function() {
     this.x = this.playerStartx;
     this.y = this.playerStarty;
 };
 
+// Method used to increment score
 Player.prototype.score = function() {
     this.gameScore += 1;
     this.reset();
     this.updateScore();
 };
 
+// Method used to check player position for scoring
 Player.prototype.checkScore = function () {
     if (this.y === -50) {
         this.score();
     }
 };
 
+// Player position is reset and a life is lost after a player dies.
 Player.prototype.die = function () {
     this.lives -= 1;
     this.reset();
@@ -128,6 +141,7 @@ Player.prototype.die = function () {
     this.checkLose();
 };
 
+// Check player total lives, runs game end method if lives are 0
 Player.prototype.checkLose = function () {
     if (this.lives === 0) {
         this.endGame();
@@ -141,27 +155,35 @@ Player.prototype.updateScore = function(){
     scoreDiv.innerHTML = `Score: ${scoreValue}`;
 };
 
+// Method updates page score element
 Player.prototype.updateLives = function(){
     const livesDiv = document.querySelector('.game-grid__lives');
     const livesValue = player.lives;
     livesDiv.innerHTML = `Lives: ${livesValue}`;
 };
 
+// Run end game sequence
 Player.prototype.endGame = function(){
+    // New modal and elements created
     const endGameModal = new Modal(document.querySelector('.game-modal__modal-overlay'));
     const restartButton = document.querySelector('.game-modal__btn-play');
     const endScore = document.createElement("h3");
+
+    // Update endScore element to reflect player's final score
     endScore.innerHTML = `Your Score: ${this.gameScore}`;
 
+    // Change restart button text and add game restart click even listener
     restartButton.innerHTML = 'Play Again';
     restartButton.parentElement.appendChild(restartButton);
     restartButton.parentElement.appendChild(endScore);
     restartButton.addEventListener('click', this.restartGame());
 
+    // Display new endGameModal in DOM
     window.openmodal = endGameModal.open.bind(endGameModal);
     window.openmodal();
 };
 
+// Game restart player method
 Player.prototype.restartGame = function(){
     this.gameScore = 0;
     this.lives = 5;
@@ -169,10 +191,17 @@ Player.prototype.restartGame = function(){
     this.updateLives();
 };
 
+// Render player
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+/*
+Arrow key up handler Player method.
+
+X and Y movement values are passed to the game Player object update method
+according to the arrow key pressed.
+ */
 Player.prototype.handleInput = function(event) {
     const yMove = 85;
     const xMove = 100;
@@ -207,6 +236,7 @@ Player.prototype.handleInput = function(event) {
 
 };
 
+// Modal class used to generate Start and End Game modals
 const Modal = function (overlay) {
     this.overlay = overlay;
 
