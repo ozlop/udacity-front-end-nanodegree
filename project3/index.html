@@ -6,18 +6,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
 </head>
 <body>
 <section class="game-section">
   <div class="game-grid">
     <div class="game-grid__score-section">
       <h3 class="game-grid__score">Score: 0</h3>
+      <h3 class="game-grid__lives">Lives: 5</h3>
     </div>
     <div class="game-grid__game-canvas">
     </div>
     <div class="game-grid__leaderboard-section">
       <h3 class="game-grid__leaderboard">Leaderboard</h3>
-      <h4 class="game-grid__leaderboard-coming-soon">Coming Soon!</h3>
+      <h4 class="game-grid__leaderboard-coming-soon">Coming Soon!</h4>
+    </div>
+  </div>
+</section>
+<section class="game-modal-section">
+  <div class="game-modal__display">
+    <div class="game-modal__modal-overlay">
+      <div class="game-modal__modal">
+        <div class="game-modal__modal-content">
+          <h3 class="game-modal__modal-content-header">
+            Arcade Game Clone:
+          </h3>
+          <h2>Frogger</h2>
+          <div class="game-modal__btn-play">Start Game</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

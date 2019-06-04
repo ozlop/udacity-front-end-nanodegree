@@ -60,7 +60,7 @@ Enemy.prototype.checkCollision = function(player) {
         this.x + this.width > player.x &&
         this.y - this.height === player.y) {
 
-        player.lose()
+        player.die()
     }
 };
 
@@ -92,6 +92,9 @@ const Player = function() {
 
     // Player score
     this.gameScore = 0;
+
+    // Player lives
+    this.lives = 5;
 };
 
 Player.prototype.update = function(x=0, y=0) {
@@ -118,10 +121,17 @@ Player.prototype.checkScore = function () {
     }
 };
 
-Player.prototype.lose = function () {
-    this.gameScore = 0;
-    this.reset()
-    this.updateScore()
+Player.prototype.die = function () {
+    this.lives -= 1;
+    this.reset();
+    this.updateLives();
+    this.checkLose();
+};
+
+Player.prototype.checkLose = function () {
+    if (this.lives === 0) {
+        this.endGame();
+    }
 };
 
 // Page score results
@@ -129,9 +139,35 @@ Player.prototype.updateScore = function(){
     const scoreDiv = document.querySelector('.game-grid__score');
     const scoreValue = player.gameScore;
     scoreDiv.innerHTML = `Score: ${scoreValue}`;
-    console.log('alkjasd')
 };
 
+Player.prototype.updateLives = function(){
+    const livesDiv = document.querySelector('.game-grid__lives');
+    const livesValue = player.lives;
+    livesDiv.innerHTML = `Lives: ${livesValue}`;
+};
+
+Player.prototype.endGame = function(){
+    const endGameModal = new Modal(document.querySelector('.game-modal__modal-overlay'));
+    const restartButton = document.querySelector('.game-modal__btn-play');
+    const endScore = document.createElement("h3");
+    endScore.innerHTML = `Your Score: ${this.gameScore}`;
+
+    restartButton.innerHTML = 'Play Again';
+    restartButton.parentElement.appendChild(restartButton);
+    restartButton.parentElement.appendChild(endScore);
+    restartButton.addEventListener('click', this.restartGame());
+
+    window.openmodal = endGameModal.open.bind(endGameModal);
+    window.openmodal();
+};
+
+Player.prototype.restartGame = function(){
+    this.gameScore = 0;
+    this.lives = 5;
+    this.updateScore();
+    this.updateLives();
+};
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -170,6 +206,27 @@ Player.prototype.handleInput = function(event) {
     }
 
 };
+
+const Modal = function (overlay) {
+    this.overlay = overlay;
+
+    this.open = function () {
+        this.overlay.classList.remove('is-hidden');
+    };
+
+    this.close = function () {
+        this.overlay.classList.add('is-hidden');
+    };
+
+    const closeButton = overlay.querySelector('.game-modal__btn-play');
+    closeButton.addEventListener('click', this.close.bind(this));
+    overlay.addEventListener('click', e => {
+        if (e.srcElement.id === this.overlay.id) {
+            this.close();
+        }
+    });
+};
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -179,6 +236,11 @@ const enemy1 = new Enemy(50);
 const enemy2 = new Enemy(135);
 const enemy3 = new Enemy(220);
 const allEnemies = [enemy1, enemy2, enemy3];
+
+//Modal objects
+const startGameModal = new Modal(document.querySelector('.game-modal__modal-overlay'));
+window.openModal = startGameModal.open.bind(startGameModal);
+window.openModal();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
