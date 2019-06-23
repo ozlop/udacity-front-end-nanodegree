@@ -107,9 +107,30 @@ $(function() {
     })
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function () {
+
 
     /* TODO: Write a test that ensures when a new feed is loaded
      * by the loadFeed function that the content actually changes.
      * Remember, loadFeed() is asynchronous.
      */
+        let firstFeed, secondFeed;
+
+        beforeEach(function(done){
+            // load first feed
+            loadFeed(0, function(){
+                firstFeed = document.querySelector('.feed').cloneNode(true);
+            });
+
+            // load second feed
+            loadFeed(1, function(){
+                secondFeed = document.querySelector('.feed');
+                done();
+            });
+        });
+
+        it('feed change', function () {
+            expect(firstFeed).not.toEqual(secondFeed);
+        })
+    })
 }());
