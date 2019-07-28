@@ -176,6 +176,11 @@ nav h1 a {
   margin: 0 1em;
   font-size: 1em;
 }
+#restaurants-list address {
+  font-style: normal;
+  margin: 0 1em;
+  font-size: 1em;
+}
 #restaurants-list li a {
   background-color: orange;
   border-bottom: .2em solid #eee;
