@@ -172,7 +172,9 @@ nav h1 a {
   margin: 1em 0 .5em;
   text-transform: uppercase;
 }
-#restaurants-list p {
+#restaurants-list h3 {
+  font-style: normal;
+  font-weight: normal;
   margin: 0 1em;
   font-size: 1em;
 }
