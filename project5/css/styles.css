@@ -218,9 +218,10 @@ nav h1 a {
   width: 100%;
 }
 .inside #footer {
+  padding: 1em 0 2em 2.5em;
   bottom: 0;
   position: absolute;
-  width: 50%;
+  width: calc(50% - 2.5em);
 }
 #restaurant-name {
   color: #f18200;
@@ -287,4 +288,35 @@ nav h1 a {
 }
 #restaurant-hours td {
   color: #666;
+}
+
+@media only screen and (max-device-width: 900px) {
+  #maincontent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .inside #map-container {
+    position: relative;
+    width: 100%;
+    height: 20em;
+    z-index: 0;
+
+    order: 2;
+  }
+  #breadcrumb {
+    width: 100%;
+  }
+  #restaurant-container {
+    width: 100%;
+  }
+  #reviews-container {
+    position: relative;
+    padding-top: 10em;
+    width: 100%;
+    order: 3;
+  }
+  .inside #footer {
+    width: 100%;
+  }
 }
