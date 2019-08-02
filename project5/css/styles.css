@@ -292,6 +292,7 @@ nav h1 a {
 
 @media only screen and (max-device-width: 900px) {
   #maincontent {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -322,6 +323,7 @@ nav h1 a {
   }
   .inside #footer {
     width: 100%;
+    padding-left: 0;
   }
 }
 @media only screen and (max-device-width: 550px) {
